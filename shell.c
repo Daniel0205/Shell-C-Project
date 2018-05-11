@@ -50,14 +50,14 @@ int main(int argc, char*argv[]) {
 		if(!pid){
 			char * myargs[100];                
 			asignarArgumentos(myargs,comando,&salidaTexto);
-			prepararSalidaArchivo(salidaTexto,&fd,myargs);			
+			//prepararSalidaArchivo(salidaTexto,&fd,myargs);			
 				
-			/*if (salidaTexto){	
+			if (salidaTexto){	
 				printf(". ");		
 				close(STDOUT_FILENO);
 				char *filename=myargs[salidaTexto];
 				fd=open(filename,O_CREAT|O_WRONLY|O_TRUNC|S_IRWXU|S_IXOTH);		
-			}*/
+			}
   			int aux = execvp(myargs[0],myargs); 
   			if (aux==-1)printf("Este comando no pudo ser ejecutado\n");
   			if (salidaTexto) close(fd);
