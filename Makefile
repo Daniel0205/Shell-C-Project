@@ -1,7 +1,7 @@
 ejecutar: clean
 	./shell
 clean: shell
-	rm -f  *.o 
+	rm -f  *.o *.a
 shell: libfunShell.a
 	gcc -L. -o shell shell.c -lfunShell
 libfunShell.a: funShell.o

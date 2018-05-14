@@ -9,7 +9,7 @@ void asignarArgumentos(char ** arrayArgs, char *linea, int *text, int *doPipe, c
     char * aux;
     int contador = 0, contador2 = 0;
     aux = strtok(linea, " ");
-
+	
     while (aux != NULL) {
         arrayArgs[contador] = strdup(aux);
         aux = strtok(NULL, " ");
@@ -23,16 +23,23 @@ void asignarArgumentos(char ** arrayArgs, char *linea, int *text, int *doPipe, c
                 pipeArray[contador2] = strdup(aux);
                 aux = strtok(NULL, " ");
                 contador2++;
+                
                 if (aux == NULL || !strcmp(">", aux))break;
                 if (!strcmp("|", aux)){
 					pipeArray[contador2]=NULL;
 					aux = strtok(NULL, " ");
 					contador2++;
 				}
+				
             }
+            
             pipeArray[contador2] = NULL;
+			
         }
+        
+        if (aux == NULL)break;
         if (!strcmp(">", aux)) {
+			
             *text = contador + 2;
             arrayArgs[contador] = NULL;
             contador++;
@@ -56,7 +63,7 @@ void ejecutarPipe(char ** myargs, char ** pipeArray){
 		swap = freopen(" ", "w+", stdout);
 		int aux = execvp(myargs[0], myargs);
 		fclose(swap);
-		if (aux == -1)printf("Este comando no pudo ser ejecutado\n");
+		if (aux == -1)printf("Este comando no pudo ser ejecutado 1 \n");
 	} else {
 			waitpid(frk1, NULL, 0);
 			pid_t frk2 = fork();
@@ -69,7 +76,6 @@ void ejecutarPipe(char ** myargs, char ** pipeArray){
 					if (pipeArray[i] == NULL) {
 						pipeArray[i] = " ";
 						pipeArray[i + 1] = NULL;
-						printf("llego - %d",i);
 						break;
 					}
 					i++;
@@ -89,7 +95,7 @@ void ejecutarPipe(char ** myargs, char ** pipeArray){
 void ejecutarSinPipe(char ** myargs){
 	
 	int aux = execvp(myargs[0], myargs);
-	if (aux == -1)printf("Este comando no pudo ser ejecutado\n");
+	if (aux == -1)printf("Este comando no pudo ser ejecutado-2\n");
 
 	
 }

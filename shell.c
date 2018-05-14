@@ -23,14 +23,18 @@ int main(int argc, char*argv[]) {
         FILE * fd;
 
         if (!pid) {
+            
             char * myargs[100], * pipeArray[100];
+            
             asignarArgumentos(myargs, comando, &salidaTexto, &doPipe, pipeArray);
-
+			
 			if (salidaTexto){
+				
 				if(prepararSalidaArchivo(salidaTexto,&fd,myargs))break;	
 			}
 			
             if (doPipe) { // Con pipe //
+				
                 ejecutarPipe(myargs,pipeArray);
                 
             } else { // Sin pipe //
