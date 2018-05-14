@@ -1,3 +1,5 @@
+ejecutar: clean
+	./shell
 clean: shell
 	rm -f  *.o 
 shell: libfunShell.a
